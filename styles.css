@@ -624,7 +624,8 @@ section.section .matters-group {
 /* Remove last divider */
 #vibecoding ul li:last-child {
   border-bottom: none;
-}
+}/
+
 
 
 
