@@ -625,6 +625,80 @@ section.section .matters-group {
 #vibecoding ul li:last-child {
   border-bottom: none;
 }/
+/* ============================
+   PREMIUM LIST STYLE (VIBECODING + BUILD)
+   ============================ */
+
+/* Shared: nicer list block */
+#vibecoding ul,
+#what-build ul {
+  max-width: 520px;
+  margin: 2rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+/* Shared: remove those long divider lines and add structure */
+#vibecoding ul li,
+#what-build ul li {
+  border-bottom: none !important;
+  padding: 0.9rem 1rem;
+  margin: 0.75rem 0;
+  line-height: 1.6;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  position: relative;
+}
+
+/* Accent dot (matches your Why This Matters polish) */
+#vibecoding ul li::before,
+#what-build ul li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.95;
+}
+
+/* Space the text away from the dot */
+#vibecoding ul li,
+#what-build ul li {
+  padding-left: 2.3rem;
+}
+
+/* Mobile: keep it neat */
+@media (max-width: 768px) {
+  #vibecoding ul,
+  #what-build ul {
+    max-width: 92%;
+  }
+}
+/* ============================
+   WHAT WE BUILD: GRID ON DESKTOP
+   ============================ */
+@media (min-width: 900px) {
+  #what-build ul {
+    max-width: 980px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  #what-build ul li {
+    margin: 0; /* grid handles spacing */
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+  }
+}
 
 
 
