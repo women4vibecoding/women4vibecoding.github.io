@@ -491,6 +491,107 @@ section.section .matters-group {
     text-align: center;
   }
 }
+/* ============================
+   PREMIUM POLISH: WHY THIS MATTERS
+   ============================ */
+
+/* Give the whole section a soft background and spacing */
+.why-matters {
+  padding: 5rem 0;
+  background: rgba(79, 70, 229, 0.04); /* very soft tint */
+}
+
+/* Keep layout centered and readable */
+.why-matters .container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Make the section title feel intentional */
+.why-matters h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* Turn the two groups into cards */
+.matters-group {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+/* Card headings */
+.matters-group h3 {
+  text-align: left;
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+/* Clean list style inside cards */
+.matters-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item looks like a clean row */
+.matters-group ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  line-height: 1.55;
+}
+
+/* Remove the last divider line */
+.matters-group ul li:last-child {
+  border-bottom: none;
+}
+
+/* Premium bullet: small gradient dot */
+.matters-group ul li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  flex: 0 0 10px;
+  opacity: 0.95;
+}
+
+/* Make the grid breathe (desktop) */
+.why-matters .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem;
+}
+
+.why-matters h2 {
+  grid-column: 1 / -1;
+}
+
+/* Mobile: stack cards and center text a bit */
+@media (max-width: 768px) {
+  .why-matters .container {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .matters-group h3 {
+    text-align: center;
+  }
+
+  .matters-group ul li {
+    justify-content: center;
+  }
+}
+
 
 
 
