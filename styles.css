@@ -367,3 +367,9 @@ body {
         font-size: 1.75rem;
     }
 }
+.footer-legal {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+}
