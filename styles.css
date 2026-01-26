@@ -698,29 +698,21 @@ section.section .matters-group {
     display: flex;
     align-items: center;
   }
-}
-#waiting-list .lead {
-  max-width: 760px;
-  margin: 0 auto 1.5rem;
-  text-align: center;
-  opacity: 0.9;
-}
+/* WAITING LIST FORM — LARGE & READABLE */
 
 .form-embed {
-  max-width: 760px;
-  margin: 0 auto;
-  border-radius: 16px;
+  width: 100%;
+  max-width: 1100px;   /* wider on desktop */
+  margin: 2.5rem auto;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
   background: #fff;
 }
 
 .form-embed iframe {
-  width: 100%;
-  height: 950px;
-  border: 0;
-}
+
 
 
 
