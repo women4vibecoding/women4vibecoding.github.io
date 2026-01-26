@@ -729,12 +729,13 @@ section.section .matters-group {
 }
 
 
-/* Mobile */
 @media (max-width: 768px) {
   .waiting-list iframe {
-    height: 1200px;
+    min-height: 1400px;
   }
 }
+
+
 
 
 
