@@ -94,7 +94,7 @@ canvas { width: 100%; height: auto; display: block; }
 .tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .tab { border: 1.5px solid var(--line); background: var(--bg); border-radius: 18px; padding: 16px; text-align: left; display: grid; gap: 4px; color: var(--ink); }
 .tab b { font-family: var(--display); font-weight: 700; font-size: 19px; line-height: 1.1; }
-.tab span { font-family: var(--display); font-weight: 800; font-size: 26px; }
+.tab span { font-family: var(--display); font-weight: 800; font-size: 19px; line-height: 1.15; }
 .tab small { color: var(--muted); font-size: 13px; }
 .tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
 .tab[aria-selected="true"] small { color: #cfc8c4; } .tab[aria-selected="true"] span { color: var(--sun); }
@@ -109,6 +109,8 @@ canvas { width: 100%; height: auto; display: block; }
 .journey i { width: 32px; height: 32px; border-radius: 50%; border: 3px solid var(--line); background: var(--bg); position: relative; z-index: 1; transition: all .25s; }
 .journey li.on { color: var(--ink); }
 .journey li.on i { background: var(--coral); border-color: var(--coral); box-shadow: 0 0 0 6px var(--coral-tint); }
+.journey li.opt { color: var(--ink); }
+.journey li.opt i { border-style: dashed; border-color: var(--coral); }
 .journey li.on.star i { background: var(--ink); border-color: var(--ink); box-shadow: 0 0 0 6px var(--sun); }
 .journey em { font-style: normal; font-weight: 500; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .bars { display: grid; gap: 10px; }
@@ -132,9 +134,11 @@ canvas { width: 100%; height: auto; display: block; }
 .reply h3 { font-weight: 800; font-size: clamp(24px, 3vw, 34px); line-height: 1.05; }
 .reply label { display: grid; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #bdb6b2; margin-top: 16px; }
 .reply input { font: inherit; font-size: 16px; padding: 11px 12px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.25); background: rgba(255,255,255,.07); color: #fff; width: 100%; }
-.msg { background: rgba(255,255,255,.08); border-radius: 16px; padding: 16px; font-size: 16px; line-height: 1.5; user-select: all; }
+.msg { background: rgba(255,255,255,.08); border-radius: 16px; padding: 16px; font-size: 16px; line-height: 1.5; user-select: all; white-space: pre-wrap; }
 .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
-.go { background: var(--coral); color: #fff; border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 700; }
+.go { background: var(--coral); color: #fff; border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 700; text-decoration: none; display: inline-block; }
+.hint { font-size: 13px; color: var(--muted); }
+.ask { justify-self: start; margin-top: 4px; }
 .no { background: transparent; color: #d9d3cf; border: 1.5px solid rgba(255,255,255,.3); border-radius: 999px; padding: 11px 18px; }
 .status { font-size: 13px; color: #cfc8c4; margin-top: 12px; } .status a { color: #fff; }
 
@@ -172,7 +176,7 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
   <div class="wrap">
     <img src="logo.png" alt="W4VC, Women4VibeCoding Europe">
     <nav aria-label="Sections"><a href="#audience">Audience</a><a href="#layers">The topic</a><a href="#packages">Packages</a><a href="#hosts">Hosts</a></nav>
-    <a class="cta" href="#reserve">Reserve a place</a>
+    <a class="cta" href="#reserve">Request the budget</a>
   </div>
 </div>
 
@@ -190,7 +194,7 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
         <div><b id="cd-d">12</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div>
         <div><b id="cd-m">00</b><span>min</span></div><div><b id="cd-s">00</b><span>sec</span></div>
       </div>
-      <p>Special guest <b>Eva Ntovolou</b>, DPO of the Year. Hosted by <b>Women4VibeCoding Europe</b>.</p>
+      <p>Special guest <b>Eva Ntovolou</b>, Luxembourg DPO of the Year 2026. Hosted by <b>Women4VibeCoding Europe</b>.</p>
     </div>
   </div>
 </header>
@@ -239,12 +243,13 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
 
 <section id="packages">
   <div class="wrap">
-    <div class="head"><div class="kicker">Packages</div><h2>See what your brand gets</h2><p>Choose a package. The charts show where your brand appears, from registration to the report. Prices exclude VAT.</p></div>
+    <div class="head"><div class="kicker">Packages</div><h2>See what your brand gets</h2><p>Choose a package. The charts show where your brand appears, from registration to the report. Then ask for the budget: the email is already written for you.</p></div>
     <div class="tabs" role="tablist" aria-label="Packages" id="tabs"></div>
     <div class="bento dash">
       <div class="tile d-journey">
         <h3>Where your brand appears</h3>
         <ol class="journey" id="journey"></ol>
+        <small class="hint">Dashed circle: available on request.</small>
       </div>
       <div class="tile d-bars">
         <h3>Brand touchpoints, out of 8</h3>
@@ -257,6 +262,7 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
       <div class="tile d-list">
         <h3 id="list-title">Also included</h3>
         <ul id="extras"></ul>
+        <a class="cta ask" href="#reserve" id="ask">Request the budget</a>
       </div>
     </div>
   </div>
@@ -264,17 +270,17 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
 
 <section id="reserve">
   <div class="wrap">
-    <div class="head"><div class="kicker">Reserve</div><h2>Pick your category</h2><p>One brand per category, so your competitors are not next to you. Tap yours.</p></div>
+    <div class="head"><div class="kicker">Request the budget</div><h2>Pick your category</h2><p>One brand per category, so your competitors are not next to you. Tap yours and the email below is written for you.</p></div>
     <div class="board" id="board"></div>
     <div class="reply">
       <div>
-        <h3>Your reply, ready to send</h3>
+        <h3>Your email, already written</h3>
         <label for="company">Your company<input id="company" type="text" autocomplete="organization" placeholder="Company name"></label>
       </div>
       <div>
         <div class="msg" id="msg"></div>
-        <div class="btns"><button class="go" id="copy" type="button">Copy reply</button><button class="no" id="decline" type="button">Not relevant</button></div>
-        <p class="status" id="status">Copy it and send it to Isabel Buganu on <a href="https://www.linkedin.com/in/isabelbuganu" target="_blank" rel="noopener">LinkedIn</a>. One confirmation, one invoice, no long contract.</p>
+        <div class="btns"><a class="go" id="mail" href="mailto:hello@women4vibecoding.eu">Open in email</a><button class="no" id="copy" type="button">Copy text</button><button class="no" id="decline" type="button">Not relevant</button></div>
+        <p class="status" id="status">It goes to hello@women4vibecoding.eu. If the button does not open your email app, copy the text and send it to that address. We reply with the budget for your category.</p>
       </div>
     </div>
   </div>
@@ -292,7 +298,7 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
       <div class="person guest">
         <span class="badge">Special guest</span>
         <h3>Eva Ntovolou</h3>
-        <p><b>DPO of the Year.</b> Attorney at law specialising in privacy, data protection and AI governance. She explains why organisations must interpret shared data consistently, and what that means for Luxembourg and Europe.</p>
+        <p><b>Luxembourg DPO of the Year 2026.</b> Attorney at law specialising in privacy, data protection and AI governance. She explains why organisations must interpret shared data consistently, and what that means for Luxembourg and Europe.</p>
       </div>
     </div>
   </div>
@@ -302,8 +308,8 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
   <div class="wrap">
     <div class="head"><div class="kicker">Next</div><h2>After you say yes</h2></div>
     <ol class="steps">
-      <li><b>Confirm by 19 November</b>Reply with your package and category. We confirm the place is yours.</li>
-      <li><b>Send your material</b>Logo, link, and your code or resource. Featured: we agree your 15-minute topic.</li>
+      <li><b>Ask for the budget</b>Send the ready email with your package and category. We reply with the budget.</li>
+      <li><b>Confirm by 19 November</b>We hold your category, you send logo and link. Featured: we agree your 20-minute topic.</li>
       <li><b>24 November, live</b>Your brand appears in the emails, on the slides and in the session.</li>
       <li><b>Report within 7 days</b>Registrations, live attendance and clicks on your links. No personal data.</li>
     </ol>
@@ -355,22 +361,22 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
   /* packages */
   var STOPS = [["Registration page", "before"], ["Reminder email", "before"], ["Opening slide", "live"], ["Speaking slot", "live"], ["Host mention", "live"], ["Closing slide", "live"], ["Follow-up email", "after"], ["Results report", "after"]];
   var P = [
-    { id: "featured", name: "Featured Partner", price: "€1,200", note: "1 place only", on: [1,1,1,1,1,1,1,1], stage: 15, stageNote: "A 15-minute speaking slot for your expert, topic agreed with us in advance.",
-      extras: ["Your own section in both emails", "Your booking link on the closing slide", "No competitor in your category", "First right to the 2027 editions"] },
-    { id: "pilot", name: "Pilot Partner", price: "€500", note: "one per category", on: [1,1,1,0,0,1,1,1], stage: 0, stageNote: "Your logo is on screen at the opening and the close.",
-      extras: ["Logo and link in both emails", "One resource or offer from you in the follow-up", "No competitor in your category", "First right to the 2027 editions"] },
-    { id: "gift", name: "Gift Guide listing", price: "€250", note: "consumer brands", on: [0,1,0,0,0,0,1,1], stage: 0, stageNote: "Your offer travels by email, in the Black Friday Founders' Gift Guide.",
+    { id: "featured", name: "Featured Partner", tag: "Speaking slot + demo", note: "1 place only", on: [1,1,1,1,1,1,1,1], stage: "20", stageNote: "A 20-minute speaking slot for your expert, with the option to demo your product. Topic agreed with us in advance.",
+      extras: ["Demo option inside your speaking slot", "Your own section in both emails", "Your booking link on the closing slide", "No competitor in your category", "First right to the 2027 editions"] },
+    { id: "pilot", name: "Pilot Partner", tag: "Brand visibility", note: "one per category", on: [1,1,1,2,0,1,1,1], stage: "Optional", stageNote: "Your logo is on screen at the opening and the close. A speaking slot can be added on request.",
+      extras: ["Speaking slot available on request", "Logo and link in both emails", "One resource or offer from you in the follow-up", "No competitor in your category", "First right to the 2027 editions"] },
+    { id: "gift", name: "Gift Guide listing", tag: "Black Friday guide", note: "consumer brands", on: [0,1,0,0,0,0,1,1], stage: "0", stageNote: "Your offer travels by email, in the Black Friday Founders' Gift Guide.",
       extras: ["A place in the Black Friday Founders' Gift Guide", "Your own code or link, so you count orders yourself", "One brand per category"] },
-    { id: "community", name: "Community Partner", price: "In kind", note: "no invoice", on: [0,0,0,0,0,1,1,0], stage: 0, stageNote: "You give a prize or share the webinar with your audience.",
-      extras: ["Logo on the thank-you slide", "A mention in the follow-up email", "We discuss a paid place for the next edition"] }
+    { id: "community", name: "Community Partner", tag: "In kind", note: "no budget needed", on: [0,0,0,0,0,1,1,0], stage: "0", stageNote: "You give a prize or share the webinar with your audience.",
+      extras: ["Logo on the thank-you slide", "A mention in the follow-up email", "We discuss a partner place for the next edition"] }
   ];
   var CATS = ["Legal", "AI and automation", "Data and cloud", "Cybersecurity", "Software and consulting", "Banking and finance", "Telecom", "Food and gifts", "Beauty and fashion", "Travel and experiences", "Other"];
   var sel = 1, cat = null, declined = false;
-  function count(p) { return p.on.reduce(function (a, b) { return a + b; }, 0); }
+  function count(p) { return p.on.reduce(function (a, b) { return a + (b === 1 ? 1 : 0); }, 0); }
 
   P.forEach(function (p, i) {
     var b = el("button", "tab"); b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + p.id;
-    b.appendChild(el("b", null, p.name)); b.appendChild(el("span", null, p.price)); b.appendChild(el("small", null, p.note));
+    b.appendChild(el("b", null, p.name)); b.appendChild(el("span", null, p.tag)); b.appendChild(el("small", null, p.note));
     b.addEventListener("click", function () { sel = i; declined = false; render(); });
     $("tabs").appendChild(b);
     var r = el("div", "bar"); r.appendChild(el("span", null, p.name.replace(" Partner", "").replace(" listing", "")));
@@ -386,20 +392,22 @@ footer .wrap { padding-block: 22px; display: flex; flex-wrap: wrap; gap: 8px 24p
   function render() {
     var p = P[sel];
     [].forEach.call($("tabs").children, function (b, i) { b.setAttribute("aria-selected", i === sel ? "true" : "false"); });
-    [].forEach.call($("journey").children, function (li, i) { li.className = (p.on[i] ? "on" : "") + (p.on[i] && i === 3 ? " star" : ""); });
+    [].forEach.call($("journey").children, function (li, i) { li.className = p.on[i] === 1 ? "on" + (i === 3 ? " star" : "") : p.on[i] === 2 ? "opt" : ""; });
     [].forEach.call($("bars").children, function (r, i) { r.className = "bar" + (i === sel ? " on" : ""); r.querySelector("i").style.width = (count(P[i]) / 8 * 100) + "%"; });
-    $("stage").textContent = p.stage; $("stage-note").textContent = p.stageNote;
+    $("stage").textContent = p.stage; $("stage").style.fontSize = isNaN(p.stage) ? "clamp(34px, 4vw, 48px)" : ""; $("stage-note").textContent = p.stageNote; $("ask").textContent = "Request the budget for " + p.name;
     $("list-title").textContent = p.name + " also includes";
     var ul = $("extras"); ul.textContent = ""; p.extras.forEach(function (t) { ul.appendChild(el("li", null, t)); });
     [].forEach.call($("board").children, function (b) { var on = b.firstChild.textContent === cat; b.setAttribute("aria-pressed", on ? "true" : "false"); b.querySelector("small").textContent = on ? "Your pick" : "Open"; });
-    var co = $("company").value.trim() || "[company]", money = p.price === "In kind" ? "in kind" : p.price + " + VAT";
-    $("msg").textContent = declined
-      ? "Hi Isabel, thank you, this is not relevant for " + co + " right now."
-      : "Hi Isabel, " + co + " would like the " + p.name + " place (" + money + ") in the " + (cat || "[category]") + " category for the 24 November webinar. Please send the next steps.";
+    var co = $("company").value.trim() || "[company]", c = cat || "[category]";
+    var body = declined
+      ? "Hello Isabel,\n\nThank you, this is not relevant for " + co + " right now.\n\nBest regards,"
+      : "Hello Isabel,\n\n" + co + " is interested in the " + p.name + " place in the " + c + " category for the Data Governance for AI webinar on 24 November.\n\nCould you send us the budget for this option and what it includes?\n\nBest regards,";
+    $("msg").textContent = body;
+    $("mail").href = "mailto:hello@women4vibecoding.eu?subject=" + encodeURIComponent((declined ? "Not relevant" : p.name + " · " + c) + " · Data Governance for AI, 24 November") + "&body=" + encodeURIComponent(body);
   }
   function copy() {
     var s = $("status"), text = $("msg").textContent;
-    function done() { s.textContent = "Copied. Paste it in a LinkedIn message to Isabel Buganu."; }
+    function done() { s.textContent = "Copied. Paste it into an email to hello@women4vibecoding.eu."; }
     function manual() { var r = document.createRange(); r.selectNodeContents($("msg")); var g = getSelection(); g.removeAllRanges(); g.addRange(r); s.textContent = "The text is selected. Press Ctrl+C or Cmd+C to copy it."; }
     try { navigator.clipboard.writeText(text).then(done, manual); } catch (e) { manual(); }
   }
